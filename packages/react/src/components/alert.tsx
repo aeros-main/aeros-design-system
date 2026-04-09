@@ -26,7 +26,7 @@ const iconMap = {
 };
 
 export interface AlertProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "title">,
     VariantProps<typeof alertVariants> {
   title?: React.ReactNode;
   icon?: React.ReactNode;
