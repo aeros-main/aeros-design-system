@@ -13,7 +13,7 @@ export function StatCard({ label, value, mono, delta, className, ...props }: Sta
   return (
     <div
       className={cn(
-        "rounded-xl border border-border-default bg-bg-surface p-[22px]",
+        "rounded-3xl border border-border-default bg-bg-surface p-[22px]",
         className
       )}
       {...props}

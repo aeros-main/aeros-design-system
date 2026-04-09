@@ -12,7 +12,7 @@ export function EmptyState({ icon, title, description, action, className, ...pro
   return (
     <div
       className={cn(
-        "text-center px-6 py-[52px] border-[1.5px] border-dashed border-border-strong rounded-xl",
+        "text-center px-6 py-[52px] border-[1.5px] border-dashed border-border-strong rounded-3xl",
         className
       )}
       {...props}
