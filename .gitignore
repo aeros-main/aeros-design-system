@@ -12,3 +12,4 @@ build/
 .pub/
 ios/Pods/
 android/.gradle/
+pubspec.lock

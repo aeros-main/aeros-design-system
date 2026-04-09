@@ -34,22 +34,24 @@ class AerosTabs extends StatelessWidget {
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => onChanged(i),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                margin: const EdgeInsets.only(bottom: -1),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: active ? AerosColors.ink900 : Colors.transparent,
-                      width: 2,
+              child: Transform.translate(
+                offset: const Offset(0, 1),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: active ? AerosColors.ink900 : Colors.transparent,
+                        width: 2,
+                      ),
                     ),
                   ),
-                ),
-                child: Text(
-                  tabs[i],
-                  style: AerosTypography.bodySm(
-                    color: active ? a.fgPrimary : a.fgMuted,
-                  ).copyWith(fontWeight: active ? FontWeight.w600 : FontWeight.w500),
+                  child: Text(
+                    tabs[i],
+                    style: AerosTypography.bodySm(
+                      color: active ? a.fgPrimary : a.fgMuted,
+                    ).copyWith(fontWeight: active ? FontWeight.w600 : FontWeight.w500),
+                  ),
                 ),
               ),
             );

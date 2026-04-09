@@ -1,0 +1,12 @@
+@import "@aeros/react/styles.css";
+
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+
+/* Docs-only: subtle black hairline grid */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
