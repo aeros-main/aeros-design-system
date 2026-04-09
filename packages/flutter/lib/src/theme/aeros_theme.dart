@@ -30,12 +30,12 @@ class AerosTheme {
       primary: aliases.brandPrimary,
       onPrimary: Colors.white,
       primaryContainer: aliases.brandPrimaryMuted,
-      onPrimaryContainer: AerosColors.royal800,
-      secondary: AerosColors.slate600,
+      onPrimaryContainer: aliases.fgPrimary,
+      secondary: AerosColors.ink600,
       onSecondary: Colors.white,
       secondaryContainer: aliases.bgSubtle,
       onSecondaryContainer: aliases.fgPrimary,
-      tertiary: AerosColors.royal400,
+      tertiary: AerosColors.ink600,
       onTertiary: Colors.white,
       error: AerosColors.danger,
       onError: Colors.white,
@@ -53,7 +53,7 @@ class AerosTheme {
       outlineVariant: aliases.borderDefault,
       inverseSurface: aliases.bgInverse,
       onInverseSurface: aliases.fgInverse,
-      inversePrimary: AerosColors.royal200,
+      inversePrimary: AerosColors.ink200,
       scrim: Colors.black54,
       shadow: const Color(0xFF0A0F2E),
     );
@@ -75,7 +75,7 @@ class AerosTheme {
       splashFactory: InkRipple.splashFactory,
       visualDensity: VisualDensity.standard,
       appBarTheme: AppBarTheme(
-        backgroundColor: AerosColors.slate900,
+        backgroundColor: AerosColors.ink900,
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: false,
@@ -106,7 +106,7 @@ class AerosTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AerosRadii.brMd,
-          borderSide: BorderSide(color: AerosColors.royal400, width: 1.5),
+          borderSide: BorderSide(color: aliases.brandPrimary, width: 1.5),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: AerosRadii.brMd,

@@ -188,11 +188,11 @@ class _GalleryState extends State<Gallery> {
             Row(children: const [
               AerosAvatar(initials: 'PS'),
               SizedBox(width: 12),
-              AerosAvatar(initials: 'RK', tone: AerosAvatarTone.green),
+              AerosAvatar(initials: 'RK', tone: AerosAvatarTone.dark),
               SizedBox(width: 12),
-              AerosAvatar(initials: 'MN', tone: AerosAvatarTone.amber, size: AerosAvatarSize.lg),
+              AerosAvatar(initials: 'MN', tone: AerosAvatarTone.green, size: AerosAvatarSize.lg),
               SizedBox(width: 12),
-              AerosAvatar(initials: 'AA', tone: AerosAvatarTone.dark, size: AerosAvatarSize.xl),
+              AerosAvatar(initials: 'AA', tone: AerosAvatarTone.amber, size: AerosAvatarSize.xl),
             ]),
             const SizedBox(height: 32),
 

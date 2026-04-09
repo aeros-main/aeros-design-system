@@ -5,7 +5,7 @@ export function Sidebar({ className, children, ...props }: React.HTMLAttributes<
   return (
     <aside
       className={cn(
-        "w-[228px] shrink-0 h-screen sticky top-0 overflow-y-auto bg-slate-900 text-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        "w-[228px] shrink-0 h-screen sticky top-0 overflow-y-auto bg-ink-900 text-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className
       )}
       {...props}
@@ -28,12 +28,12 @@ export function SidebarBrand({
 }) {
   return (
     <div className={cn("flex items-center gap-2.5 px-5 py-5 border-b border-white/5", className)}>
-      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-royal-600 text-base font-extrabold text-white">
+      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-base font-extrabold text-ink-900">
         {mark}
       </div>
       <div className="min-w-0">
         <div className="text-base font-extrabold tracking-[-0.02em] text-white leading-tight">{name}</div>
-        {sub && <div className="mt-px font-mono text-[10px] text-slate-400 truncate">{sub}</div>}
+        {sub && <div className="mt-px font-mono text-[10px] text-ink-400 truncate">{sub}</div>}
       </div>
     </div>
   );
@@ -51,7 +51,7 @@ export function SidebarSection({
   return (
     <div className={cn("px-3 pt-[18px] pb-1", className)}>
       {label && (
-        <div className="mb-2 px-3 text-[10px] font-bold uppercase tracking-[0.08em] text-slate-400">
+        <div className="mb-2 px-3 text-[10px] font-bold uppercase tracking-[0.08em] text-ink-400">
           {label}
         </div>
       )}
@@ -72,13 +72,13 @@ export function SidebarItem({
       className={cn(
         "flex items-center gap-2.5 rounded-md px-3 py-2 text-[13px] font-medium transition-colors",
         active
-          ? "bg-royal-600/30 text-white"
+          ? "bg-white/10 text-white"
           : "text-white/50 hover:bg-white/5 hover:text-white/80",
         className
       )}
       {...props}
     >
-      {icon ?? <span className={cn("h-1.5 w-1.5 rounded-full", active ? "bg-royal-400" : "bg-white/20")} />}
+      {icon ?? <span className={cn("h-1.5 w-1.5 rounded-full", active ? "bg-white" : "bg-white/20")} />}
       {children}
     </a>
   );

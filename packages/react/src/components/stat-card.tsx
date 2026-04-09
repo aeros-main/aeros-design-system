@@ -18,13 +18,13 @@ export function StatCard({ label, value, mono, delta, className, ...props }: Sta
       )}
       {...props}
     >
-      <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-400 mb-2">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-fg-muted mb-2">
         {label}
       </div>
       <div
         className={cn(
           "text-[28px] font-extrabold tracking-[-0.03em] text-fg-primary leading-none",
-          mono && "font-mono font-medium text-[26px] text-royal-900"
+          mono && "font-mono font-medium text-[26px] text-fg-primary"
         )}
       >
         {value}

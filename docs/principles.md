@@ -18,9 +18,11 @@ Headings are **ExtraBold**, with negative letter-spacing. Numbers are **Semibold
 
 Anything a computer produced — IDs, timestamps, currency, counts, tokens — goes in **IBM Plex Mono**. This is a visual promise: if it's in mono, it's canonical. If it's in Jakarta, it's written by a person.
 
-## 5. Quiet color with decisive accents
+## 5. Black and white, with a whisper of blue
 
-The canvas is white (or near-black). The body is grey. **Royal Blue `#2347D9`** is the only brand color, used sparingly — primary actions, selected state, critical data. Semantic colors (green/amber/red) only where an operator needs to act.
+The system is **black on white**. That's the brand. Primary buttons are black, selected states are black, focus rings are black. **Royal Blue `#2347D9`** exists — but only as a whisper: the "info" badge, the blue tag, the occasional alert. If you're reaching for blue to make something pop, stop and reach for weight or size instead.
+
+Semantic colors (green/amber/red) only where an operator needs to act.
 
 ## 6. One grid, four radii
 

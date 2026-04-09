@@ -11,8 +11,8 @@ export const Switch = React.forwardRef<
     ref={ref}
     className={cn(
       "peer inline-flex h-6 w-[42px] shrink-0 cursor-pointer items-center rounded-full transition-colors",
-      "bg-ink-200 data-[state=checked]:bg-royal-600",
-      "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-royal-100",
+      "bg-ink-200 data-[state=checked]:bg-ink-900",
+      "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ink-100",
       "disabled:opacity-40 disabled:cursor-not-allowed",
       className
     )}

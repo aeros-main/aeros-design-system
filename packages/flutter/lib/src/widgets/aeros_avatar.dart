@@ -3,7 +3,7 @@ import '../tokens/colors.dart';
 import '../tokens/typography.dart';
 
 enum AerosAvatarSize { xs, sm, md, lg, xl }
-enum AerosAvatarTone { royal, dark, green, amber }
+enum AerosAvatarTone { ink, dark, royal, green, amber }
 
 class AerosAvatar extends StatelessWidget {
   const AerosAvatar({
@@ -11,7 +11,7 @@ class AerosAvatar extends StatelessWidget {
     this.initials,
     this.imageUrl,
     this.size = AerosAvatarSize.md,
-    this.tone = AerosAvatarTone.royal,
+    this.tone = AerosAvatarTone.ink,
   });
 
   final String? initials;
@@ -37,8 +37,9 @@ class AerosAvatar extends StatelessWidget {
 
   ({Color bg, Color fg, Color border}) _palette() {
     switch (tone) {
-      case AerosAvatarTone.royal: return (bg: AerosColors.royal50, fg: AerosColors.royal800, border: AerosColors.royal100);
-      case AerosAvatarTone.dark:  return (bg: AerosColors.slate800, fg: AerosColors.slate200, border: AerosColors.slate800);
+      case AerosAvatarTone.ink:   return (bg: AerosColors.ink50,    fg: AerosColors.ink900,   border: AerosColors.ink100);
+      case AerosAvatarTone.dark:  return (bg: AerosColors.ink900,   fg: Colors.white,         border: AerosColors.ink900);
+      case AerosAvatarTone.royal: return (bg: AerosColors.royal50,  fg: AerosColors.royal800, border: AerosColors.royal100);
       case AerosAvatarTone.green: return (bg: AerosColors.successBg, fg: AerosColors.successText, border: AerosColors.successBorder);
       case AerosAvatarTone.amber: return (bg: AerosColors.warningBg, fg: AerosColors.warningText, border: AerosColors.warningBorder);
     }

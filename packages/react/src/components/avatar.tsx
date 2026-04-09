@@ -16,13 +16,14 @@ const avatarVariants = cva(
         xl: "h-[60px] w-[60px] text-xl"
       },
       tone: {
+        ink:   "bg-ink-50 text-ink-900 border-[1.5px] border-ink-100",
+        dark:  "bg-ink-900 text-white",
         royal: "bg-royal-50 text-royal-800 border-[1.5px] border-royal-100",
-        dark:  "bg-slate-800 text-slate-200",
         green: "bg-success-bg text-success-text border-[1.5px] border-[#BBF7D0]",
         amber: "bg-warning-bg text-warning-text border-[1.5px] border-[#FDE68A]"
       }
     },
-    defaultVariants: { size: "md", tone: "royal" }
+    defaultVariants: { size: "md", tone: "ink" }
   }
 );
 

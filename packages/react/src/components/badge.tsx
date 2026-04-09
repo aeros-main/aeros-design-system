@@ -12,7 +12,7 @@ const badgeVariants = cva(
         red:   "bg-danger-bg text-danger-text",
         blue:  "bg-royal-50 text-royal-800",
         grey:  "bg-ink-50 text-ink-600",
-        dark:  "bg-slate-900 text-slate-200"
+        dark:  "bg-ink-900 text-ink-100"
       }
     },
     defaultVariants: { variant: "grey" }
@@ -25,7 +25,7 @@ const dotColor: Record<NonNullable<VariantProps<typeof badgeVariants>["variant"]
   red:   "bg-danger",
   blue:  "bg-royal-600",
   grey:  "bg-ink-400",
-  dark:  "bg-slate-400"
+  dark:  "bg-ink-400"
 };
 
 export interface BadgeProps

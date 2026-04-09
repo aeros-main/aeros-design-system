@@ -18,7 +18,7 @@ class AerosBadge extends StatelessWidget {
       case AerosBadgeTone.red:   return (bg: AerosColors.dangerBg,  fg: AerosColors.dangerText,  dot: AerosColors.danger);
       case AerosBadgeTone.blue:  return (bg: AerosColors.royal50,   fg: AerosColors.royal800,    dot: AerosColors.royal600);
       case AerosBadgeTone.grey:  return (bg: AerosColors.ink50,     fg: AerosColors.ink600,      dot: AerosColors.ink400);
-      case AerosBadgeTone.dark:  return (bg: AerosColors.slate900,  fg: AerosColors.slate200,    dot: AerosColors.slate400);
+      case AerosBadgeTone.dark:  return (bg: AerosColors.ink900,    fg: AerosColors.ink100,      dot: AerosColors.ink400);
     }
   }
 

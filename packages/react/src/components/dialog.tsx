@@ -16,7 +16,7 @@ export const DialogOverlay = React.forwardRef<
   <RD.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-[1300] bg-slate-900/50 backdrop-blur-[2px]",
+      "fixed inset-0 z-[1300] bg-ink-900/60 backdrop-blur-[2px]",
       "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     )}
@@ -43,7 +43,7 @@ export const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <RD.Close className="absolute right-3 top-3 rounded-md p-1 text-fg-muted hover:bg-bg-subtle focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-royal-100">
+      <RD.Close className="absolute right-3 top-3 rounded-md p-1 text-fg-muted hover:bg-bg-subtle focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ink-100">
         <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </RD.Close>

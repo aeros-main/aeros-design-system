@@ -15,7 +15,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           "placeholder:text-ink-200 placeholder:font-normal",
           "transition-[border-color,box-shadow] duration-[120ms] resize-y",
           "focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed",
-          state === "default" && "border-border-default hover:border-border-strong focus:border-royal-400 focus:shadow-[0_0_0_3px_var(--aeros-focus-ring)]",
+          state === "default" && "border-border-default hover:border-border-strong focus:border-ink-900 focus:shadow-[0_0_0_3px_var(--aeros-focus-ring)]",
           state === "error"   && "border-danger",
           state === "success" && "border-success",
           className

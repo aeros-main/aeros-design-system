@@ -7,16 +7,16 @@ const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 font-semibold whitespace-nowrap select-none " +
   "transition-[background-color,border-color,color,transform,box-shadow] duration-[120ms] " +
   "active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none " +
-  "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-royal-100",
+  "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ink-100",
   {
     variants: {
       variant: {
-        primary:   "bg-royal-600 text-white hover:bg-royal-800",
-        secondary: "bg-bg-surface text-fg-primary border border-border-default hover:bg-slate-50 hover:border-border-strong",
-        ghost:     "bg-transparent text-royal-600 border border-royal-100 hover:bg-royal-50 hover:border-royal-200",
+        primary:   "bg-ink-900 text-white hover:bg-ink-800",
+        secondary: "bg-bg-surface text-fg-primary border border-border-default hover:bg-ink-50 hover:border-border-strong",
+        ghost:     "bg-transparent text-fg-primary border border-border-default hover:bg-ink-50",
         danger:    "bg-danger-bg text-danger-text border border-[#FECACA] hover:bg-[#FEE2E2]",
-        dark:      "bg-slate-900 text-white hover:bg-slate-800",
-        link:      "bg-transparent text-royal-600 underline-offset-4 hover:underline px-0 py-0 h-auto"
+        dark:      "bg-ink-900 text-white hover:bg-ink-800",
+        link:      "bg-transparent text-fg-primary underline-offset-4 hover:underline px-0 py-0 h-auto"
       },
       size: {
         xs: "h-7 px-3 text-[11px] rounded-md",

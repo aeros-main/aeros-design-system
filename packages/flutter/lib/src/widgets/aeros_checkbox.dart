@@ -18,7 +18,7 @@ class AerosCheckbox extends StatelessWidget {
         value: value,
         tristate: tristate,
         onChanged: onChanged,
-        activeColor: AerosColors.royal600,
+        activeColor: AerosColors.ink900,
         checkColor: Colors.white,
         side: BorderSide(color: a.borderStrong, width: 1.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

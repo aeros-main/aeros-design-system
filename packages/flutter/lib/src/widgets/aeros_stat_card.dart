@@ -46,12 +46,12 @@ class AerosStatCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(label.toUpperCase(), style: AerosTypography.overline(color: AerosColors.slate400)),
+          Text(label.toUpperCase(), style: AerosTypography.overline(color: a.fgMuted)),
           const SizedBox(height: 8),
           Text(
             value,
             style: mono
-                ? AerosTypography.monoLg(color: AerosColors.royal900).copyWith(fontSize: 26, fontWeight: FontWeight.w500)
+                ? AerosTypography.monoLg(color: a.fgPrimary).copyWith(fontSize: 26, fontWeight: FontWeight.w500)
                 : AerosTypography.h1(color: a.fgPrimary),
           ),
           if (delta != null) ...[

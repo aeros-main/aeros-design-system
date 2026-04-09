@@ -16,7 +16,7 @@ export const SelectTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-10 w-full items-center justify-between rounded-md border border-border-default bg-bg-surface px-3.5 text-sm font-medium text-fg-primary",
-      "hover:border-border-strong focus:outline-none focus:border-royal-400 focus:shadow-[0_0_0_3px_var(--aeros-focus-ring)]",
+      "hover:border-border-strong focus:outline-none focus:border-ink-900 focus:shadow-[0_0_0_3px_var(--aeros-focus-ring)]",
       "data-[placeholder]:text-ink-200 disabled:opacity-50",
       className
     )}
@@ -24,7 +24,7 @@ export const SelectTrigger = React.forwardRef<
   >
     {children}
     <RS.Icon asChild>
-      <ChevronDown className="h-4 w-4 text-slate-400" />
+      <ChevronDown className="h-4 w-4 text-fg-muted" />
     </RS.Icon>
   </RS.Trigger>
 ));
@@ -60,7 +60,7 @@ export const SelectItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-pointer select-none items-center rounded-md py-2 pl-8 pr-2.5 text-sm font-medium text-fg-secondary",
-      "focus:bg-slate-50 focus:text-fg-primary focus:outline-none data-[state=checked]:text-royal-600 data-[state=checked]:font-semibold",
+      "focus:bg-ink-50 focus:text-fg-primary focus:outline-none data-[state=checked]:text-fg-primary data-[state=checked]:font-semibold",
       className
     )}
     {...props}

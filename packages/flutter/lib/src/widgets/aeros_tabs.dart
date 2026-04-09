@@ -40,7 +40,7 @@ class AerosTabs extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                      color: active ? AerosColors.royal600 : Colors.transparent,
+                      color: active ? AerosColors.ink900 : Colors.transparent,
                       width: 2,
                     ),
                   ),
@@ -48,7 +48,7 @@ class AerosTabs extends StatelessWidget {
                 child: Text(
                   tabs[i],
                   style: AerosTypography.bodySm(
-                    color: active ? AerosColors.royal600 : a.fgMuted,
+                    color: active ? a.fgPrimary : a.fgMuted,
                   ).copyWith(fontWeight: active ? FontWeight.w600 : FontWeight.w500),
                 ),
               ),

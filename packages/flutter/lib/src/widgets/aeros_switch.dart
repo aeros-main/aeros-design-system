@@ -13,7 +13,7 @@ class AerosSwitch extends StatelessWidget {
       value: value,
       onChanged: onChanged,
       activeColor: Colors.white,
-      activeTrackColor: AerosColors.royal600,
+      activeTrackColor: AerosColors.ink900,
       inactiveThumbColor: Colors.white,
       inactiveTrackColor: AerosColors.ink200,
       trackOutlineColor: WidgetStateProperty.resolveWith((_) => Colors.transparent),

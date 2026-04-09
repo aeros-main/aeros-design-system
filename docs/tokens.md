@@ -39,20 +39,24 @@ Use these in components — they switch with theme.
 
 | Alias | Light | Dark |
 |---|---|---|
-| `bg.canvas` | slate-50 | ink-900 |
-| `bg.surface` | white | slate-900 |
-| `bg.subtle` | slate-50 | slate-800 |
-| `bg.inverse` | slate-900 | white |
+| `bg.canvas` | white | ink-900 |
+| `bg.surface` | white | ink-900 |
+| `bg.subtle` | ink-50 | ink-800 |
+| `bg.inverse` | ink-900 | white |
 | `fg.primary` | ink-900 | white |
-| `fg.secondary` | ink-600 | slate-100 |
-| `fg.muted` | ink-400 | slate-400 |
-| `fg.brand` | royal-600 | royal-400 |
-| `border.default` | slate-100 | slate-800 |
-| `border.strong` | slate-200 | slate-600 |
-| `border.focus` | royal-400 | royal-400 |
-| `brand.primary` | royal-600 | royal-400 |
-| `brand.primary-hover` | royal-800 | royal-200 |
-| `brand.primary-muted` | royal-50 | royal-800 |
+| `fg.secondary` | ink-600 | ink-100 |
+| `fg.muted` | ink-400 | ink-400 |
+| `fg.brand` | ink-900 | white |
+| `border.default` | ink-100 | ink-800 |
+| `border.strong` | ink-200 | ink-600 |
+| `border.focus` | ink-900 | white |
+| `brand.primary` | ink-900 | white |
+| `brand.primary-hover` | ink-600 | ink-100 |
+| `brand.primary-muted` | ink-50 | ink-800 |
+| `accent` | royal-600 | royal-400 |
+| `accent-muted` | royal-50 | royal-800 |
+
+> **Brand is black.** Royal Blue lives in `accent` / `accent-muted` tokens and in the `blue` variants of Badge, Tag, and Alert — nowhere else. Reach for it only for the tiniest bit of emphasis.
 
 ## Typography
 

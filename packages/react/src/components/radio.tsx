@@ -19,14 +19,14 @@ export const RadioGroupItem = React.forwardRef<
     ref={ref}
     className={cn(
       "aspect-square h-[18px] w-[18px] rounded-full border-[1.5px] border-border-strong bg-bg-surface",
-      "transition-colors hover:border-royal-400 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-royal-100",
-      "data-[state=checked]:border-royal-600",
+      "transition-colors hover:border-ink-900 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ink-100",
+      "data-[state=checked]:border-ink-900",
       "disabled:opacity-40",
       className
     )}
     {...props}
   >
-    <RG.Indicator className="flex h-full w-full items-center justify-center after:h-2 after:w-2 after:rounded-full after:bg-royal-600 after:content-['']" />
+    <RG.Indicator className="flex h-full w-full items-center justify-center after:h-2 after:w-2 after:rounded-full after:bg-ink-900 after:content-['']" />
   </RG.Item>
 ));
 RadioGroupItem.displayName = "RadioGroupItem";

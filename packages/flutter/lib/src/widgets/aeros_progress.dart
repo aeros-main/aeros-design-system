@@ -8,7 +8,7 @@ class AerosProgress extends StatelessWidget {
     super.key,
     required this.value,
     this.label,
-    this.color = AerosColors.royal600,
+    this.color = AerosColors.ink900,
   });
 
   final double value; // 0..1
@@ -37,7 +37,7 @@ class AerosProgress extends StatelessWidget {
           child: LinearProgressIndicator(
             value: value.clamp(0, 1),
             minHeight: 6,
-            backgroundColor: AerosColors.slate100,
+            backgroundColor: AerosColors.ink100,
             valueColor: AlwaysStoppedAnimation(color),
           ),
         ),

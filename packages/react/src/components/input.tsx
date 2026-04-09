@@ -18,7 +18,7 @@ const base =
   "focus:outline-none focus-visible:outline-none";
 
 const stateClasses: Record<InputState, string> = {
-  default: "border-border-default hover:border-border-strong focus:border-royal-400 focus:shadow-[0_0_0_3px_var(--aeros-focus-ring)]",
+  default: "border-border-default hover:border-border-strong focus:border-ink-900 focus:shadow-[0_0_0_3px_var(--aeros-focus-ring)]",
   error:   "border-danger focus:shadow-[0_0_0_3px_rgba(220,38,38,0.15)]",
   success: "border-success focus:shadow-[0_0_0_3px_rgba(22,163,74,0.15)]"
 };
@@ -31,7 +31,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn("relative", containerClassName)}>
         {prefix && (
-          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-muted">
             {prefix}
           </span>
         )}

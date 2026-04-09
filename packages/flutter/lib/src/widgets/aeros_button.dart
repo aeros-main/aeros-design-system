@@ -78,11 +78,11 @@ class AerosButton extends StatelessWidget {
       case AerosButtonVariant.secondary:
         return (bg: a.bgSurface, fg: a.fgPrimary, border: a.borderDefault);
       case AerosButtonVariant.ghost:
-        return (bg: Colors.transparent, fg: a.brandPrimary, border: AerosColors.royal100);
+        return (bg: Colors.transparent, fg: a.fgPrimary, border: a.borderDefault);
       case AerosButtonVariant.danger:
         return (bg: AerosColors.dangerBg, fg: AerosColors.dangerText, border: AerosColors.dangerBorder);
       case AerosButtonVariant.dark:
-        return (bg: AerosColors.slate900, fg: Colors.white, border: null);
+        return (bg: AerosColors.ink900, fg: Colors.white, border: null);
       case AerosButtonVariant.link:
         return (bg: Colors.transparent, fg: a.brandPrimary, border: null);
     }

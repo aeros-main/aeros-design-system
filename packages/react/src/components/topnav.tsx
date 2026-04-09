@@ -5,7 +5,7 @@ export function TopNav({ className, children, ...props }: React.HTMLAttributes<H
   return (
     <header
       className={cn(
-        "h-14 flex items-center gap-2.5 px-5 rounded-lg bg-slate-900 text-white",
+        "h-14 flex items-center gap-2.5 px-5 rounded-lg bg-ink-900 text-white",
         className
       )}
       {...props}
@@ -26,7 +26,7 @@ export function TopNavBrand({
 }) {
   return (
     <div className={cn("flex items-center gap-2.5", className)}>
-      <div className="flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-royal-600 text-[13px] font-extrabold tracking-[-0.01em] text-white">
+      <div className="flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-white text-[13px] font-extrabold tracking-[-0.01em] text-ink-900">
         {mark}
       </div>
       <div className="text-[15px] font-extrabold tracking-[-0.02em]">{name}</div>

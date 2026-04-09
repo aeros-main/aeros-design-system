@@ -16,7 +16,7 @@ class AerosRadio<T> extends StatelessWidget {
         value: value,
         groupValue: groupValue,
         onChanged: onChanged,
-        activeColor: AerosColors.royal600,
+        activeColor: AerosColors.ink900,
         visualDensity: VisualDensity.compact,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),

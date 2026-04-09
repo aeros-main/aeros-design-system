@@ -3,7 +3,7 @@ import '../tokens/colors.dart';
 import '../tokens/radii.dart';
 import '../tokens/typography.dart';
 
-enum AerosTagTone { blue, grey, slate }
+enum AerosTagTone { blue, grey, dark }
 
 class AerosTag extends StatelessWidget {
   const AerosTag({super.key, required this.label, this.tone = AerosTagTone.grey});
@@ -19,8 +19,8 @@ class AerosTag extends StatelessWidget {
         bg = AerosColors.royal50; fg = AerosColors.royal800; break;
       case AerosTagTone.grey:
         bg = AerosColors.ink50; fg = AerosColors.ink600; border = AerosColors.ink100; break;
-      case AerosTagTone.slate:
-        bg = AerosColors.slate800; fg = AerosColors.slate200; break;
+      case AerosTagTone.dark:
+        bg = AerosColors.ink900; fg = AerosColors.ink100; break;
     }
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
