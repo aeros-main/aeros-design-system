@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:aeros-x.com)"
+      "WebFetch(domain:aeros-x.com)",
+      "Bash(npx --yes pnpm install)",
+      "Bash(npx --yes pnpm --filter @aeros/tokens build)",
+      "Bash(npx --yes pnpm --filter @aeros/react build)"
     ]
   }
 }
