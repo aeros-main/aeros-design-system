@@ -19,7 +19,11 @@
       "Bash(export PATH=\"$HOME/.nvm/versions/node/v24.14.1/bin:$PATH\")",
       "Bash(node scripts/setup-design-system.mjs)",
       "Bash(ls vendor/aeros-design-system/packages/react/dist/*.d.ts)",
-      "Bash(npx --yes pnpm --filter @aeros/react-docs build)"
+      "Bash(npx --yes pnpm --filter @aeros/react-docs build)",
+      "Bash(npx --yes pnpm import)",
+      "Bash(rm -f scripts/setup-design-system.mjs)",
+      "Bash(rm -rf node_modules pnpm-lock.yaml vendor/aeros-design-system/node_modules)",
+      "Bash(npx --yes pnpm run build)"
     ]
   }
 }
