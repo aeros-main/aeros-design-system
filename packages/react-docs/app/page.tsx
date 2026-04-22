@@ -67,6 +67,7 @@ import {
   SidebarBrand,
   SidebarSection,
   SidebarItem,
+  DotMatrix,
 } from "@aeros/react";
 import {
   Inbox,
@@ -136,42 +137,200 @@ function Row({
 }
 
 // ────────────────────────────────────────────────────────────────
+// Foundations: colour swatches + type scale
+// ────────────────────────────────────────────────────────────────
+const SEMANTIC_COLORS: Array<{ token: string; cssVar: string; hex: string }> = [
+  { token: "bg-canvas",       cssVar: "--color-bg-canvas",     hex: "#FFFFFF" },
+  { token: "bg-subtle",       cssVar: "--color-bg-subtle",     hex: "#F5F5F5" },
+  { token: "bg-inverse",      cssVar: "--color-bg-inverse",    hex: "#0A0A0A" },
+  { token: "fg-primary",      cssVar: "--color-fg-primary",    hex: "#0A0A0A" },
+  { token: "fg-secondary",    cssVar: "--color-fg-secondary",  hex: "#404040" },
+  { token: "fg-muted",        cssVar: "--color-fg-muted",      hex: "#6B6B6B" },
+  { token: "border-default",  cssVar: "--color-border-default",hex: "#E5E5E5" },
+  { token: "border-strong",   cssVar: "--color-border-strong", hex: "#C2C2C2" },
+  { token: "accent",          cssVar: "--color-accent",        hex: "#2347D9" },
+  { token: "accent-muted",    cssVar: "--color-accent-muted",  hex: "#EEF1FD" },
+];
+
+const STATUS_COLORS: Array<{ token: string; hex: string; cls: string }> = [
+  { token: "success",      hex: "#16A34A", cls: "bg-success" },
+  { token: "success-bg",   hex: "#DCFCE7", cls: "bg-success-bg" },
+  { token: "warning",      hex: "#D97706", cls: "bg-warning" },
+  { token: "warning-bg",   hex: "#FEF3C7", cls: "bg-warning-bg" },
+  { token: "danger",       hex: "#DC2626", cls: "bg-danger" },
+  { token: "danger-bg",    hex: "#FEE2E2", cls: "bg-danger-bg" },
+  { token: "info",         hex: "#2347D9", cls: "bg-info" },
+  { token: "info-bg",      hex: "#EEF1FD", cls: "bg-info-bg" },
+];
+
+const RAMPS: Array<{ name: string; shades: Array<{ k: string; hex: string }> }> = [
+  {
+    name: "ink",
+    shades: [
+      { k: "50", hex: "#F5F5F5" },
+      { k: "100", hex: "#E5E5E5" },
+      { k: "200", hex: "#C2C2C2" },
+      { k: "400", hex: "#737373" },
+      { k: "600", hex: "#404040" },
+      { k: "800", hex: "#1A1A1A" },
+      { k: "900", hex: "#0A0A0A" },
+    ],
+  },
+  {
+    name: "royal",
+    shades: [
+      { k: "50", hex: "#EEF1FD" },
+      { k: "100", hex: "#C5CEFA" },
+      { k: "200", hex: "#9DAAED" },
+      { k: "400", hex: "#5B78E8" },
+      { k: "600", hex: "#2347D9" },
+      { k: "800", hex: "#1A2F8A" },
+      { k: "900", hex: "#0B1B6B" },
+    ],
+  },
+];
+
+function Swatch({
+  hex,
+  token,
+  bgStyle,
+  bgClass,
+  withBorder = false,
+}: {
+  hex: string;
+  token: string;
+  bgStyle?: React.CSSProperties;
+  bgClass?: string;
+  withBorder?: boolean;
+}) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <div
+        className={
+          "h-16 w-full rounded-lg " +
+          (bgClass ?? "") +
+          (withBorder ? " border border-border-default" : "")
+        }
+        style={bgStyle}
+      />
+      <div className="font-mono text-[11px] text-fg-primary leading-tight">{token}</div>
+      <div className="font-mono text-[10px] uppercase text-fg-muted">{hex}</div>
+    </div>
+  );
+}
+
+const TYPE_SCALE: Array<{ cls: string; label: string; sample: string }> = [
+  { cls: "t-display-xl", label: "display-xl · 56 / 800", sample: "Run everything." },
+  { cls: "t-display-lg", label: "display-lg · 42 / 800", sample: "Run everything." },
+  { cls: "t-display-md", label: "display-md · 32 / 800", sample: "Built for operators." },
+  { cls: "t-h1",         label: "h1 · 28 / 800",          sample: "Today's production" },
+  { cls: "t-h2",         label: "h2 · 22 / 800",          sample: "Pending approvals" },
+  { cls: "t-h3",         label: "h3 · 20 / 700",          sample: "Live shipments" },
+  { cls: "t-h4",         label: "h4 · 16 / 700",          sample: "RFQ-0042 · Pacific Pack Co." },
+  { cls: "t-body-lg",    label: "body-lg · 16 / 500",     sample: "Designed for the operator who can't pause for slow software." },
+  { cls: "t-body-md",    label: "body-md · 14 / 500",     sample: "Designed for the operator who can't pause for slow software." },
+  { cls: "t-body-sm",    label: "body-sm · 13 / 500",     sample: "Updated 3 minutes ago by Priya Sharma." },
+  { cls: "t-caption",    label: "caption · 12 / 500",     sample: "Auto-refreshed at 14:02 IST" },
+  { cls: "t-overline",   label: "overline · 11 / 600 · UPPERCASE", sample: "Section label" },
+  { cls: "t-mono-md",    label: "mono-md · 14 / 500",     sample: "RFQ-0042  ·  ₹1,24,000" },
+  { cls: "t-mono-sm",    label: "mono-sm · 12 / 400",     sample: "0xA94F-LINE-3-SENSOR-02" },
+];
+
+// ────────────────────────────────────────────────────────────────
 // Page
 // ────────────────────────────────────────────────────────────────
+const NAV: Array<{ section: string; items: Array<{ href: string; label: React.ReactNode }> }> = [
+  {
+    section: "Foundations",
+    items: [
+      { href: "#colors", label: "Colors" },
+      { href: "#typography", label: "Typography" },
+    ],
+  },
+  {
+    section: "Components",
+    items: [
+      { href: "#buttons", label: "Buttons" },
+      { href: "#inputs", label: "Inputs" },
+      { href: "#controls", label: "Controls" },
+      { href: "#badges", label: <>Badges &amp; tags</> },
+      { href: "#cards", label: "Cards" },
+      { href: "#stats", label: "Stat cards" },
+      { href: "#alerts", label: "Alerts" },
+      { href: "#progress", label: "Progress" },
+      { href: "#avatars", label: "Avatars" },
+      { href: "#tabs", label: "Tabs" },
+      { href: "#breadcrumb", label: "Breadcrumb" },
+      { href: "#menu", label: "Dropdown menu" },
+      { href: "#dialog", label: "Dialog" },
+      { href: "#tooltip", label: "Tooltip" },
+      { href: "#table", label: "Table" },
+      { href: "#empty", label: "Empty state" },
+      { href: "#dot-matrix", label: "Dot matrix" },
+      { href: "#nav", label: "TopNav" },
+    ],
+  },
+];
+
+function useActiveSection(defaultId: string): string {
+  const [active, setActive] = React.useState(defaultId);
+
+  React.useEffect(() => {
+    const ids = NAV.flatMap((g) => g.items.map((i) => i.href.slice(1)));
+
+    const fromHash = () => {
+      const h = window.location.hash.slice(1);
+      if (h && ids.includes(h)) setActive(h);
+    };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("hashchange", fromHash);
+      observer.disconnect();
+    };
+  }, []);
+
+  return active;
+}
+
 export default function Playground() {
   const [checked, setChecked] = React.useState<boolean>(true);
   const [switched, setSwitched] = React.useState(true);
+  const active = useActiveSection("colors");
 
   return (
     <div className="flex min-h-screen">
       {/* ── SIDEBAR ─────────────────────────────────────── */}
       <Sidebar>
         <SidebarBrand mark="A" name="Aeros" sub="React docs" />
-        <SidebarSection label="Foundations">
-          <SidebarItem href="#colors">Colors</SidebarItem>
-          <SidebarItem href="#typography">Typography</SidebarItem>
-        </SidebarSection>
-        <SidebarSection label="Components">
-          <SidebarItem href="#buttons" active>
-            Buttons
-          </SidebarItem>
-          <SidebarItem href="#inputs">Inputs</SidebarItem>
-          <SidebarItem href="#controls">Controls</SidebarItem>
-          <SidebarItem href="#badges">Badges &amp; tags</SidebarItem>
-          <SidebarItem href="#cards">Cards</SidebarItem>
-          <SidebarItem href="#stats">Stat cards</SidebarItem>
-          <SidebarItem href="#alerts">Alerts</SidebarItem>
-          <SidebarItem href="#progress">Progress</SidebarItem>
-          <SidebarItem href="#avatars">Avatars</SidebarItem>
-          <SidebarItem href="#tabs">Tabs</SidebarItem>
-          <SidebarItem href="#breadcrumb">Breadcrumb</SidebarItem>
-          <SidebarItem href="#menu">Dropdown menu</SidebarItem>
-          <SidebarItem href="#dialog">Dialog</SidebarItem>
-          <SidebarItem href="#tooltip">Tooltip</SidebarItem>
-          <SidebarItem href="#table">Table</SidebarItem>
-          <SidebarItem href="#empty">Empty state</SidebarItem>
-          <SidebarItem href="#nav">TopNav</SidebarItem>
-        </SidebarSection>
+        {NAV.map((group) => (
+          <SidebarSection key={group.section} label={group.section}>
+            {group.items.map((item) => (
+              <SidebarItem
+                key={item.href}
+                href={item.href}
+                active={active === item.href.slice(1)}
+              >
+                {item.label}
+              </SidebarItem>
+            ))}
+          </SidebarSection>
+        ))}
       </Sidebar>
 
       {/* ── MAIN ───────────────────────────────────────── */}
@@ -195,8 +354,83 @@ export default function Playground() {
           </p>
         </div>
 
+        {/* COLORS */}
+        <Section
+          id="colors"
+          eyebrow="01 — Foundations"
+          title="Colors"
+          description="Semantic aliases first; raw ramps only when you need a specific shade. Aliases switch automatically with [data-theme]."
+        >
+          <Row label="Semantic — surface, text, border">
+            <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-5">
+              {SEMANTIC_COLORS.map((c) => (
+                <Swatch
+                  key={c.token}
+                  hex={c.hex}
+                  token={c.token}
+                  bgStyle={{ backgroundColor: `var(${c.cssVar})` }}
+                  withBorder={c.hex.toUpperCase() === "#FFFFFF" || c.hex.toUpperCase() === "#F5F5F5"}
+                />
+              ))}
+            </div>
+          </Row>
+          <Row label="Status">
+            <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
+              {STATUS_COLORS.map((c) => (
+                <Swatch key={c.token} hex={c.hex} token={c.token} bgClass={c.cls} />
+              ))}
+            </div>
+          </Row>
+          <Row label="Ramps">
+            <div className="w-full space-y-5">
+              {RAMPS.map((ramp) => (
+                <div key={ramp.name}>
+                  <div className="mb-2 font-mono text-[11px] uppercase tracking-wider text-fg-muted">
+                    {ramp.name}
+                  </div>
+                  <div className="grid grid-cols-7 gap-2">
+                    {ramp.shades.map((s) => (
+                      <div key={s.k} className="flex flex-col gap-1">
+                        <div
+                          className="h-12 w-full rounded-md border border-border-default"
+                          style={{ backgroundColor: s.hex }}
+                        />
+                        <div className="font-mono text-[10px] text-fg-primary">
+                          {ramp.name}-{s.k}
+                        </div>
+                        <div className="font-mono text-[10px] uppercase text-fg-muted">{s.hex}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Row>
+        </Section>
+
+        {/* TYPOGRAPHY */}
+        <Section
+          id="typography"
+          eyebrow="02 — Foundations"
+          title="Typography"
+          description="Plus Jakarta Sans for UI. IBM Plex Mono for data. Nunito Sans (wdth 125) is reserved for the wordmark."
+        >
+          <div className="space-y-5">
+            {TYPE_SCALE.map((t) => (
+              <div key={t.cls} className="flex items-baseline gap-6 border-b border-border-default pb-4">
+                <div className="w-44 shrink-0 font-mono text-[11px] text-fg-muted">{t.label}</div>
+                <div className={t.cls + " text-fg-primary"}>{t.sample}</div>
+              </div>
+            ))}
+            <div className="flex items-baseline gap-6 pt-2">
+              <div className="w-44 shrink-0 font-mono text-[11px] text-fg-muted">aeros-logo</div>
+              <div className="aeros-logo text-[44px] text-fg-primary">Aeros</div>
+            </div>
+          </div>
+        </Section>
+
         {/* BUTTONS */}
-        <Section id="buttons" eyebrow="01 — Components" title="Buttons" description="Six variants. Five sizes. Loading, icons, asChild polymorphism.">
+        <Section id="buttons" eyebrow="03 — Components" title="Buttons" description="Six variants. Five sizes. Loading, icons, asChild polymorphism.">
           <Row label="Variants">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
@@ -223,7 +457,7 @@ export default function Playground() {
         </Section>
 
         {/* INPUTS */}
-        <Section id="inputs" eyebrow="02 — Components" title="Inputs" description="Text inputs with prefix/suffix slots, states, and the Field wrapper.">
+        <Section id="inputs" eyebrow="04 — Components" title="Inputs" description="Text inputs with prefix/suffix slots, states, and the Field wrapper.">
           <div className="grid max-w-xl gap-4">
             <Field label="Email" hint="We'll never share your address.">
               <Input type="email" placeholder="priya@example.com" />
@@ -244,7 +478,7 @@ export default function Playground() {
         </Section>
 
         {/* CONTROLS */}
-        <Section id="controls" eyebrow="03 — Components" title="Checkbox · Radio · Switch">
+        <Section id="controls" eyebrow="05 — Components" title="Checkbox · Radio · Switch">
           <Row label="Checkboxes">
             <label className="inline-flex items-center gap-2 text-sm text-fg-secondary">
               <Checkbox checked={checked} onCheckedChange={(v) => setChecked(v === true)} />
@@ -284,7 +518,7 @@ export default function Playground() {
         </Section>
 
         {/* BADGES */}
-        <Section id="badges" eyebrow="04 — Components" title="Badges &amp; tags">
+        <Section id="badges" eyebrow="06 — Components" title="Badges &amp; tags">
           <Row label="Badges">
             <Badge variant="green" dot>
               Active
@@ -313,7 +547,7 @@ export default function Playground() {
         </Section>
 
         {/* CARDS */}
-        <Section id="cards" eyebrow="05 — Components" title="Cards">
+        <Section id="cards" eyebrow="07 — Components" title="Cards">
           <div className="grid gap-5 md:grid-cols-2">
             <Card>
               <CardHeader>
@@ -364,7 +598,7 @@ export default function Playground() {
         </Section>
 
         {/* STAT CARDS */}
-        <Section id="stats" eyebrow="06 — Components" title="Stat cards">
+        <Section id="stats" eyebrow="08 — Components" title="Stat cards">
           <div className="grid gap-4 md:grid-cols-3">
             <StatCard
               label="Output"
@@ -386,7 +620,7 @@ export default function Playground() {
         </Section>
 
         {/* ALERTS */}
-        <Section id="alerts" eyebrow="07 — Components" title="Alerts">
+        <Section id="alerts" eyebrow="09 — Components" title="Alerts">
           <div className="grid max-w-xl gap-2">
             <Alert variant="blue" title="Heads up">
               A new RFQ is available for review.
@@ -404,7 +638,7 @@ export default function Playground() {
         </Section>
 
         {/* PROGRESS */}
-        <Section id="progress" eyebrow="08 — Components" title="Progress">
+        <Section id="progress" eyebrow="10 — Components" title="Progress">
           <div className="max-w-md space-y-4">
             <div>
               <div className="mb-1.5 flex justify-between text-xs">
@@ -431,7 +665,7 @@ export default function Playground() {
         </Section>
 
         {/* AVATARS */}
-        <Section id="avatars" eyebrow="09 — Components" title="Avatars">
+        <Section id="avatars" eyebrow="11 — Components" title="Avatars">
           <Row label="Sizes">
             <Avatar size="xs" fallback="PS" />
             <Avatar size="sm" fallback="PS" />
@@ -457,7 +691,7 @@ export default function Playground() {
         </Section>
 
         {/* TABS */}
-        <Section id="tabs" eyebrow="10 — Components" title="Tabs">
+        <Section id="tabs" eyebrow="12 — Components" title="Tabs">
           <div className="mb-6">
             <Tabs defaultValue="overview" variant="underline">
               <TabsList>
@@ -490,7 +724,7 @@ export default function Playground() {
         </Section>
 
         {/* BREADCRUMB */}
-        <Section id="breadcrumb" eyebrow="11 — Components" title="Breadcrumb">
+        <Section id="breadcrumb" eyebrow="13 — Components" title="Breadcrumb">
           <Breadcrumb
             items={[
               { label: "Operations", href: "#" },
@@ -501,7 +735,7 @@ export default function Playground() {
         </Section>
 
         {/* DROPDOWN MENU */}
-        <Section id="menu" eyebrow="12 — Components" title="Dropdown menu">
+        <Section id="menu" eyebrow="14 — Components" title="Dropdown menu">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" trailingIcon={<ChevronDown className="h-4 w-4" />}>
@@ -525,7 +759,7 @@ export default function Playground() {
         </Section>
 
         {/* DIALOG */}
-        <Section id="dialog" eyebrow="13 — Components" title="Dialog">
+        <Section id="dialog" eyebrow="15 — Components" title="Dialog">
           <Dialog>
             <DialogTrigger asChild>
               <Button>Invite teammate</Button>
@@ -553,7 +787,7 @@ export default function Playground() {
         </Section>
 
         {/* TOOLTIP */}
-        <Section id="tooltip" eyebrow="14 — Components" title="Tooltip">
+        <Section id="tooltip" eyebrow="16 — Components" title="Tooltip">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -568,7 +802,7 @@ export default function Playground() {
         </Section>
 
         {/* TABLE */}
-        <Section id="table" eyebrow="15 — Components" title="Table">
+        <Section id="table" eyebrow="17 — Components" title="Table">
           <Table>
             <Thead>
               <Tr>
@@ -632,7 +866,7 @@ export default function Playground() {
         </Section>
 
         {/* EMPTY STATE */}
-        <Section id="empty" eyebrow="16 — Components" title="Empty state">
+        <Section id="empty" eyebrow="18 — Components" title="Empty state">
           <EmptyState
             icon={<Inbox className="h-5 w-5" />}
             title="No RFQs yet"
@@ -641,8 +875,25 @@ export default function Playground() {
           />
         </Section>
 
+        {/* DOT MATRIX */}
+        <Section
+          id="dot-matrix"
+          eyebrow="19 — Motion / Brand"
+          title="Dot matrix"
+          description="Hexagonal halftone matrix. Radial ripple by default; pulse variant fires all rings in phase."
+        >
+          <div className="flex flex-wrap gap-6">
+            <div className="rounded-3xl overflow-hidden shadow-lg">
+              <DotMatrix size={480} rings={5} variant="ripple" />
+            </div>
+            <div className="rounded-3xl overflow-hidden shadow-lg">
+              <DotMatrix size={240} rings={4} variant="pulse" speed={1600} />
+            </div>
+          </div>
+        </Section>
+
         {/* TOP NAV */}
-        <Section id="nav" eyebrow="17 — Components" title="TopNav">
+        <Section id="nav" eyebrow="20 — Components" title="TopNav">
           <TopNav>
             <TopNavBrand mark="A" name="Aeros" />
             <TopNavLinks>
