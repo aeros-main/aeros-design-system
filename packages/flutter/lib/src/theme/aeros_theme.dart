@@ -81,7 +81,7 @@ class AerosTheme {
         centerTitle: false,
         titleTextStyle: AerosTypography.h4(color: Colors.white),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: aliases.bgSurface,
         elevation: 0,
         margin: EdgeInsets.zero,
@@ -146,7 +146,7 @@ class AerosTheme {
           shape: const RoundedRectangleBorder(borderRadius: AerosRadii.brMd),
         ),
       ),
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: aliases.bgSurface,
         surfaceTintColor: Colors.transparent,
         elevation: 20,
