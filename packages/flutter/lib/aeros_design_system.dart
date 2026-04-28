@@ -33,3 +33,7 @@ export 'src/widgets/aeros_intent_card.dart';
 export 'src/widgets/aeros_pagination.dart';
 export 'src/widgets/aeros_scaffold.dart';
 export 'src/widgets/aeros_dropdown_search.dart';
+export 'src/widgets/aeros_form_field.dart';
+export 'src/widgets/aeros_page_header.dart';
+export 'src/widgets/aeros_confirm_dialog.dart';
+export 'src/widgets/aeros_data_table.dart';
